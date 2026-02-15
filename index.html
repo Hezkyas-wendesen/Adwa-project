@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="Educational strategy game about the Battle of Adwa (1896)">
+    <title>Battle of Adwa - Strategy Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Main Menu -->
+    <div id="main-menu" class="screen active">
+        <div class="menu-container">
+            <h1>Battle of Adwa</h1>
+            <p class="subtitle">1896 - Ethiopian Victory</p>
+            <div class="ethiopian-flag">
+                <div class="flag-stripe green"></div>
+                <div class="flag-stripe yellow"></div>
+                <div class="flag-stripe red"></div>
+            </div>
+            <p class="intro-text">
+                Lead the Ethiopian forces under Emperor Menelik II in this historic battle.
+                Defend your homeland against invasion!
+            </p>
+            <button id="start-game-btn" class="btn btn-primary">Start Campaign</button>
+            <button id="how-to-play-btn" class="btn btn-secondary">How to Play</button>
+        </div>
+    </div>
+
+    <!-- How to Play Screen -->
+    <div id="how-to-play" class="screen">
+        <div class="menu-container">
+            <h2>How to Play</h2>
+            <div class="instructions">
+                <h3>Objective</h3>
+                <p>Position your troops strategically and defeat all enemy forces while minimizing casualties.</p>
+                
+                <h3>Units</h3>
+                <ul>
+                    <li><strong>Infantry (👥):</strong> Strong defenders, moderate attack, cost: 50 resources</li>
+                    <li><strong>Cavalry (🐎):</strong> Fast movers, strong attack, cost: 100 resources</li>
+                </ul>
+                
+                <h3>Terrain</h3>
+                <ul>
+                    <li><strong>Plains (🟩):</strong> No bonuses</li>
+                    <li><strong>Hills (🟫):</strong> +1 defense bonus</li>
+                    <li><strong>Mountains (⛰️):</strong> +2 defense, -1 movement</li>
+                </ul>
+                
+                <h3>Gameplay</h3>
+                <p>1. Deploy units during setup phase</p>
+                <p>2. Select a unit and choose action: Move or Attack</p>
+                <p>3. Defeat all enemy units to win the level</p>
+                <p>4. Preserve resources and units for better score</p>
+            </div>
+            <button id="back-to-menu-btn" class="btn btn-secondary">Back to Menu</button>
+        </div>
+    </div>
+
+    <!-- Historical Fact Screen -->
+    <div id="historical-fact" class="screen">
+        <div class="menu-container">
+            <h2>Historical Fact</h2>
+            <div id="fact-content" class="fact-content"></div>
+            <button id="continue-btn" class="btn btn-primary">Continue</button>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="screen">
+        <div class="game-header">
+            <div class="game-info">
+                <div>Level: <span id="level-display">1</span></div>
+                <div>Resources: <span id="resources-display">300</span></div>
+                <div>Score: <span id="score-display">0</span></div>
+            </div>
+            <div class="turn-info">
+                <div>Turn: <span id="turn-display">Ethiopian</span></div>
+                <button id="end-turn-btn" class="btn btn-small">End Turn</button>
+            </div>
+        </div>
+
+        <!-- Game Board -->
+        <div id="game-board" class="game-board"></div>
+
+        <!-- Unit Info Panel -->
+        <div id="unit-info-panel" class="info-panel">
+            <h3>Unit Information</h3>
+            <div id="unit-details">Select a unit to view details</div>
+        </div>
+
+        <!-- Action Panel -->
+        <div id="action-panel" class="action-panel">
+            <h3>Actions</h3>
+            <button id="deploy-infantry-btn" class="btn btn-action" disabled>Deploy Infantry (50)</button>
+            <button id="deploy-cavalry-btn" class="btn btn-action" disabled>Deploy Cavalry (100)</button>
+            <button id="move-btn" class="btn btn-action" disabled>Move Unit</button>
+            <button id="attack-btn" class="btn btn-action" disabled>Attack</button>
+            <button id="cancel-btn" class="btn btn-action" disabled>Cancel</button>
+        </div>
+
+        <!-- Message Display -->
+        <div id="message-display" class="message-display"></div>
+    </div>
+
+    <!-- Victory Screen -->
+    <div id="victory-screen" class="screen">
+        <div class="menu-container">
+            <h2>Victory!</h2>
+            <div class="victory-content">
+                <p class="victory-message">The Ethiopian forces have successfully defended their homeland!</p>
+                <div id="victory-stats"></div>
+            </div>
+            <button id="next-level-btn" class="btn btn-primary">Next Level</button>
+            <button id="victory-menu-btn" class="btn btn-secondary">Main Menu</button>
+        </div>
+    </div>
+
+    <!-- Defeat Screen -->
+    <div id="defeat-screen" class="screen">
+        <div class="menu-container">
+            <h2>Defeat</h2>
+            <p class="defeat-message">The battle is lost, but the war continues...</p>
+            <button id="retry-btn" class="btn btn-primary">Retry Level</button>
+            <button id="defeat-menu-btn" class="btn btn-secondary">Main Menu</button>
+        </div>
+    </div>
+
+    <!-- Campaign Complete Screen -->
+    <div id="campaign-complete" class="screen">
+        <div class="menu-container">
+            <h2>Campaign Complete!</h2>
+            <div class="victory-content">
+                <p class="victory-message">You have successfully defended Ethiopia and achieved a historic victory!</p>
+                <div id="final-stats"></div>
+                <p class="historical-note">
+                    The Battle of Adwa on March 1, 1896, was a decisive victory for Ethiopia over Italy,
+                    making Ethiopia the only African nation to successfully resist European colonization.
+                    Emperor Menelik II's strategic brilliance and the unity of Ethiopian forces
+                    secured independence and inspired anti-colonial movements across Africa.
+                </p>
+            </div>
+            <button id="campaign-menu-btn" class="btn btn-primary">Main Menu</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

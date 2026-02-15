@@ -1,0 +1,486 @@
+/* Ethiopian Colors - Green, Yellow, Red */
+:root {
+    --ethiopian-green: #009639;
+    --ethiopian-yellow: #fcd116;
+    --ethiopian-red: #da121a;
+    --dark-bg: #1a1a1a;
+    --light-bg: #f5f5f5;
+    --text-dark: #333;
+    --text-light: #fff;
+    --border-color: #ccc;
+    --shadow: rgba(0, 0, 0, 0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--ethiopian-green) 0%, var(--ethiopian-yellow) 50%, var(--ethiopian-red) 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Screen Management */
+.screen {
+    display: none;
+    min-height: 100vh;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.screen.active {
+    display: flex;
+}
+
+/* Menu Styles */
+.menu-container {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 10px 30px var(--shadow);
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: var(--ethiopian-green);
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px var(--shadow);
+}
+
+h2 {
+    font-size: 2em;
+    color: var(--ethiopian-green);
+    margin-bottom: 20px;
+}
+
+.subtitle {
+    font-size: 1.2em;
+    color: var(--ethiopian-red);
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Ethiopian Flag */
+.ethiopian-flag {
+    width: 200px;
+    height: 120px;
+    margin: 20px auto;
+    border: 2px solid var(--text-dark);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.flag-stripe {
+    height: 33.33%;
+    width: 100%;
+}
+
+.flag-stripe.green {
+    background: var(--ethiopian-green);
+}
+
+.flag-stripe.yellow {
+    background: var(--ethiopian-yellow);
+}
+
+.flag-stripe.red {
+    background: var(--ethiopian-red);
+}
+
+/* Buttons */
+.btn {
+    padding: 12px 30px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 10px;
+    transition: all 0.3s;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background: var(--ethiopian-green);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #007a2d;
+    transform: scale(1.05);
+}
+
+.btn-secondary {
+    background: var(--ethiopian-yellow);
+    color: var(--text-dark);
+}
+
+.btn-secondary:hover {
+    background: #e0b800;
+    transform: scale(1.05);
+}
+
+.btn-small {
+    padding: 8px 16px;
+    font-size: 0.9em;
+}
+
+.btn-action {
+    display: block;
+    width: 100%;
+    margin: 5px 0;
+    padding: 10px;
+    font-size: 0.95em;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Instructions */
+.intro-text {
+    font-size: 1.1em;
+    margin: 20px 0;
+    line-height: 1.6;
+    color: var(--text-dark);
+}
+
+.instructions {
+    text-align: left;
+    margin: 20px 0;
+}
+
+.instructions h3 {
+    color: var(--ethiopian-green);
+    margin: 15px 0 10px 0;
+}
+
+.instructions ul {
+    margin-left: 20px;
+}
+
+.instructions li {
+    margin: 8px 0;
+    line-height: 1.5;
+}
+
+.instructions p {
+    margin: 5px 0;
+    line-height: 1.5;
+}
+
+/* Game Screen */
+#game-screen {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background: var(--light-bg);
+}
+
+.game-header {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 5px var(--shadow);
+}
+
+.game-info, .turn-info {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.game-info div, .turn-info div {
+    font-weight: bold;
+    color: var(--text-dark);
+}
+
+.game-info span, .turn-info span {
+    color: var(--ethiopian-green);
+}
+
+/* Game Board */
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 2px;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px var(--shadow);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cell {
+    aspect-ratio: 1;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    font-size: 1.5em;
+    transition: all 0.2s;
+}
+
+.cell:hover {
+    transform: scale(1.05);
+    z-index: 10;
+}
+
+.cell.plain {
+    background: #90EE90;
+}
+
+.cell.hill {
+    background: #D2B48C;
+}
+
+.cell.mountain {
+    background: #8B7355;
+}
+
+.cell.selected {
+    border: 3px solid var(--ethiopian-yellow);
+    box-shadow: 0 0 10px var(--ethiopian-yellow);
+}
+
+.cell.valid-move {
+    background-color: rgba(144, 238, 144, 0.5);
+    cursor: pointer;
+}
+
+.cell.valid-attack {
+    background-color: rgba(255, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.cell.deployment-zone {
+    background-color: rgba(0, 150, 57, 0.3);
+}
+
+.unit {
+    font-size: 1.2em;
+}
+
+.unit.ethiopian {
+    color: var(--ethiopian-green);
+}
+
+.unit.enemy {
+    color: var(--ethiopian-red);
+}
+
+.health-bar {
+    width: 100%;
+    height: 4px;
+    background: #ddd;
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+}
+
+.health-fill {
+    height: 100%;
+    background: var(--ethiopian-green);
+    transition: width 0.3s;
+}
+
+.enemy .health-fill {
+    background: var(--ethiopian-red);
+}
+
+/* Info Panels */
+.info-panel, .action-panel {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px var(--shadow);
+}
+
+.info-panel h3, .action-panel h3 {
+    color: var(--ethiopian-green);
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+#unit-details {
+    line-height: 1.6;
+}
+
+/* Message Display */
+.message-display {
+    background: var(--ethiopian-yellow);
+    color: var(--text-dark);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: center;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px var(--shadow);
+}
+
+/* Historical Facts */
+.fact-content {
+    background: var(--light-bg);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    line-height: 1.8;
+    font-size: 1.1em;
+    text-align: left;
+}
+
+/* Victory/Defeat Screens */
+.victory-content, .defeat-message {
+    margin: 20px 0;
+    line-height: 1.8;
+}
+
+.victory-message {
+    font-size: 1.3em;
+    color: var(--ethiopian-green);
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+#victory-stats, #final-stats {
+    background: var(--light-bg);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    text-align: left;
+}
+
+#victory-stats div, #final-stats div {
+    margin: 10px 0;
+    font-size: 1.1em;
+}
+
+.historical-note {
+    background: var(--ethiopian-yellow);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    line-height: 1.8;
+    font-style: italic;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    .game-board {
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    .cell {
+        font-size: 1.2em;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+
+    .game-header {
+        font-size: 0.9em;
+    }
+
+    .menu-container {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .screen {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    .ethiopian-flag {
+        width: 150px;
+        height: 90px;
+    }
+
+    .game-board {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 1px;
+        padding: 5px;
+    }
+
+    .cell {
+        font-size: 1em;
+    }
+
+    .game-info, .turn-info {
+        gap: 10px;
+    }
+
+    .btn {
+        padding: 8px 16px;
+        font-size: 0.9em;
+        margin: 5px;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.screen.active {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.cell.valid-move, .cell.valid-attack {
+    animation: pulse 1s infinite;
+}
