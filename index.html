@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Battle of Adwa - Strategy Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="menu-screen" class="screen active">
+            <div class="title-container">
+                <h1>Battle of Adwa</h1>
+                <h2>1896 - Ethiopia's Victory</h2>
+                <div class="flag-decoration">
+                    <div class="flag-stripe green"></div>
+                    <div class="flag-stripe yellow"></div>
+                    <div class="flag-stripe red"></div>
+                </div>
+            </div>
+            <div class="menu-buttons">
+                <button id="start-btn" class="menu-btn">Start Campaign</button>
+                <button id="tutorial-btn" class="menu-btn">How to Play</button>
+                <button id="about-btn" class="menu-btn">Historical Context</button>
+            </div>
+        </div>
+
+        <div id="tutorial-screen" class="screen">
+            <div class="content-box">
+                <h2>How to Play</h2>
+                <div class="tutorial-content">
+                    <p><strong>Objective:</strong> Defend Ethiopian territory from invading forces</p>
+                    <p><strong>Controls:</strong></p>
+                    <ul>
+                        <li>Click/Tap troops to select them</li>
+                        <li>Click/Tap terrain to move selected troops</li>
+                        <li>Use resources wisely to deploy new units</li>
+                        <li>End turn when ready</li>
+                    </ul>
+                    <p><strong>Troop Types:</strong></p>
+                    <ul>
+                        <li><strong>Infantry:</strong> Strong defenders, moderate attack (Cost: 10)</li>
+                        <li><strong>Cavalry:</strong> Fast movers, high attack (Cost: 20)</li>
+                    </ul>
+                    <p><strong>Terrain:</strong></p>
+                    <ul>
+                        <li><strong>Mountains:</strong> Defensive bonus, slow movement</li>
+                        <li><strong>Hills:</strong> Small defensive bonus</li>
+                        <li><strong>Plains:</strong> Fast movement, no bonus</li>
+                    </ul>
+                </div>
+                <button id="tutorial-back-btn" class="menu-btn">Back to Menu</button>
+            </div>
+        </div>
+
+        <div id="about-screen" class="screen">
+            <div class="content-box">
+                <h2>Historical Context</h2>
+                <div class="about-content">
+                    <p>The <strong>Battle of Adwa</strong> (March 1, 1896) was a decisive victory for Ethiopia over Italian colonial forces.</p>
+                    <p>Led by Emperor <strong>Menelik II</strong> and Empress Taytu Betul, Ethiopian forces of approximately 100,000 troops defeated a much smaller but well-equipped Italian army.</p>
+                    <p>This battle is significant because:</p>
+                    <ul>
+                        <li>It preserved Ethiopia's independence during the "Scramble for Africa"</li>
+                        <li>Ethiopia remained one of only two African nations never colonized</li>
+                        <li>It inspired anti-colonial movements across Africa and the diaspora</li>
+                        <li>It demonstrated the strength of unified African resistance</li>
+                    </ul>
+                    <p>The victory at Adwa remains a powerful symbol of African independence and unity.</p>
+                </div>
+                <button id="about-back-btn" class="menu-btn">Back to Menu</button>
+            </div>
+        </div>
+
+        <div id="fact-screen" class="screen">
+            <div class="content-box">
+                <h2>Historical Fact</h2>
+                <div id="fact-content" class="fact-content">
+                </div>
+                <button id="fact-continue-btn" class="menu-btn">Continue</button>
+            </div>
+        </div>
+
+        <div id="game-screen" class="screen">
+            <div id="game-hud">
+                <div class="hud-section">
+                    <span class="hud-label">Level:</span>
+                    <span id="level-display">1</span>
+                </div>
+                <div class="hud-section">
+                    <span class="hud-label">Turn:</span>
+                    <span id="turn-display">1</span>
+                </div>
+                <div class="hud-section">
+                    <span class="hud-label">Resources:</span>
+                    <span id="resources-display">100</span>
+                </div>
+                <div class="hud-section">
+                    <span class="hud-label">Score:</span>
+                    <span id="score-display">0</span>
+                </div>
+            </div>
+            
+            <canvas id="game-canvas"></canvas>
+            
+            <div id="game-controls">
+                <div class="control-panel">
+                    <button id="deploy-infantry-btn" class="control-btn" disabled>
+                        Deploy Infantry (10)
+                    </button>
+                    <button id="deploy-cavalry-btn" class="control-btn" disabled>
+                        Deploy Cavalry (20)
+                    </button>
+                    <button id="end-turn-btn" class="control-btn">
+                        End Turn
+                    </button>
+                </div>
+                <div id="status-message"></div>
+            </div>
+        </div>
+
+        <div id="victory-screen" class="screen">
+            <div class="content-box">
+                <h2>Victory!</h2>
+                <div class="victory-content">
+                    <p>You have successfully defended Ethiopian territory!</p>
+                    <p>Emperor Menelik II's forces prevail!</p>
+                    <div id="victory-stats"></div>
+                </div>
+                <button id="victory-continue-btn" class="menu-btn">Next Level</button>
+                <button id="victory-menu-btn" class="menu-btn">Main Menu</button>
+            </div>
+        </div>
+
+        <div id="defeat-screen" class="screen">
+            <div class="content-box">
+                <h2>Defeat</h2>
+                <div class="defeat-content">
+                    <p>The invaders have overwhelmed your forces.</p>
+                    <p>Try again with a better strategy!</p>
+                    <div id="defeat-stats"></div>
+                </div>
+                <button id="defeat-retry-btn" class="menu-btn">Retry Level</button>
+                <button id="defeat-menu-btn" class="menu-btn">Main Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
