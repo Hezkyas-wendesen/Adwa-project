@@ -1,6 +1,9 @@
 // Battle of Adwa - Game Engine
 // Educational Strategy Game
 
+// Constants
+const MAX_SPAWN_ATTEMPTS = 50;
+
 // Game State
 const game = {
     currentLevel: 1,
@@ -217,10 +220,11 @@ function renderBoard() {
 
     const { rows, cols } = game.boardSize;
     
-    // Adjust grid for mobile
+    // Adjust grid columns display for mobile (visual only, doesn't change board data)
     if (window.innerWidth <= 768) {
-        boardElement.style.gridTemplateColumns = `repeat(6, 1fr)`;
-        game.boardSize = { rows: 6, cols: 6 };
+        boardElement.style.gridTemplateColumns = `repeat(${Math.min(cols, 6)}, 1fr)`;
+    } else {
+        boardElement.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
     }
 
     for (let row = 0; row < rows; row++) {
@@ -348,7 +352,7 @@ function spawnEnemyUnits(count) {
         // Find empty cell in top rows
         let placed = false;
         let attempts = 0;
-        while (!placed && attempts < 50) {
+        while (!placed && attempts < MAX_SPAWN_ATTEMPTS) {
             const row = Math.floor(Math.random() * 2);
             const col = Math.floor(Math.random() * game.boardSize.cols);
 

@@ -484,3 +484,15 @@ h2 {
 .cell.valid-move, .cell.valid-attack {
     animation: pulse 1s infinite;
 }
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .screen.active {
+        animation: none;
+    }
+    
+    .cell.valid-move, .cell.valid-attack {
+        animation: none;
+        opacity: 0.8;
+    }
+}
