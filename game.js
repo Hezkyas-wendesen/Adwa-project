@@ -5,6 +5,9 @@ const CONFIG = {
     MAP_HEIGHT: 10,
     INITIAL_RESOURCES: 100,
     RESOURCE_PER_TURN: 20,
+    MIN_COMBAT_DAMAGE: 5,
+    MIN_COUNTER_DAMAGE: 3,
+    COUNTER_ATTACK_MULTIPLIER: 0.5,
     TROOP_TYPES: {
         INFANTRY: { cost: 10, health: 100, attack: 15, defense: 20, speed: 1, symbol: '⚔️' },
         CAVALRY: { cost: 20, health: 80, attack: 25, defense: 10, speed: 2, symbol: '🐎' }
@@ -223,12 +226,13 @@ class GameState {
         const defenderTerrain = this.getTerrainAt(defender.x, defender.y);
         const terrainBonus = CONFIG.TERRAIN_TYPES[defenderTerrain.terrain].defense;
         
-        const damage = Math.max(5, attacker.attack - defender.defense - terrainBonus);
+        const damage = Math.max(CONFIG.MIN_COMBAT_DAMAGE, attacker.attack - defender.defense - terrainBonus);
         defender.health -= damage;
         
         // Defender counter-attacks if alive
         if (defender.health > 0) {
-            const counterDamage = Math.max(3, Math.floor(defender.attack * 0.5) - attacker.defense);
+            const counterDamage = Math.max(CONFIG.MIN_COUNTER_DAMAGE, 
+                Math.floor(defender.attack * CONFIG.COUNTER_ATTACK_MULTIPLIER) - attacker.defense);
             attacker.health -= counterDamage;
         }
 
@@ -411,6 +415,7 @@ class Game {
     }
 
     showHistoricalFact(index) {
+        // Show fact based on level completed (level 2 shows fact for level 1, etc.)
         const fact = HISTORICAL_FACTS[(index - 1) % HISTORICAL_FACTS.length];
         const factContent = document.getElementById('fact-content');
         factContent.innerHTML = `
